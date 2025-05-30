@@ -1,0 +1,253 @@
+/* Admin Global Styles */
+.admin-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f1; /* Light grey background for the area outside sidebar/content */
+    color: #333;
+    display: flex;
+    flex-direction: column; /* Ensure top-nav is above main container */
+    min-height: 100vh;
+}
+
+/* Admin Top Navigation Bar */
+.admin-top-nav {
+    background-color: #1a252f; /* Very dark blue, almost black */
+    color: #fff;
+    padding: 0.8rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px; /* Fixed height */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: fixed; /* Make it sticky */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.admin-top-nav-brand a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.admin-top-nav-links a, .admin-top-nav-links span {
+    color: #bdc3c7; /* Lighter grey for links */
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 0.9rem;
+}
+.admin-top-nav-links a:hover {
+    color: #fff;
+}
+.admin-top-nav-links span {
+    margin-left: 15px;
+}
+
+
+/* Main Admin Container - holds sidebar and content */
+.admin-main-container {
+    display: flex;
+    flex-grow: 1; /* Takes up remaining vertical space */
+    padding-top: 60px; /* Account for fixed top nav */
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+    width: 230px;
+    background: #2c3e50; /* Dark blue-grey */
+    color: #fff;
+    /* min-height: calc(100vh - 60px);  Adjust min-height considering top nav */
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto; /* Scroll sidebar if content overflows */
+    position: fixed; /* Fixed sidebar */
+    left: 0;
+    top: 60px; /* Below top nav */
+    bottom: 0;
+}
+
+.admin-sidebar h3 {
+    text-align: center;
+    color: #ecf0f1; /* Light grey */
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #34495e; /* Slightly lighter border */
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-sidebar ul li a {
+    color: #bdc3c7; /* Lighter grey for links */
+    text-decoration: none;
+    display: block;
+    padding: 12px 18px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-sidebar ul li a:hover {
+    background: #34495e; /* Slightly lighter dark blue on hover */
+    color: #fff;
+}
+
+.admin-sidebar ul li.active a {
+    background: #e8491d; /* Accent color for active link */
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Admin Content Area */
+.admin-content {
+    flex-grow: 1;
+    padding: 25px;
+    background-color: #eaedf1; /* Slightly different light grey for content background */
+    margin-left: 230px; /* Account for fixed sidebar width */
+    overflow-y: auto; /* Scroll content if it overflows */
+}
+
+.admin-content h1, .admin-content h2, .admin-content h3 {
+    color: #2c3e50; /* Dark blue-grey for titles */
+}
+.admin-content h1 {
+    font-size: 1.8rem;
+    margin-top: 0; /* From admin_header */
+    margin-bottom: 10px; /* From admin_header */
+}
+hr.admin-title-hr { /* From admin_header */
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin-bottom: 25px;
+}
+
+
+/* Admin specific alerts */
+.admin-alert {
+    margin-bottom: 15px;
+}
+
+/* Admin Footer (if any specific styling needed) */
+.admin-footer {
+    background: #1a252f;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.85rem;
+    /* This footer might be part of the .admin-content scroll area or fixed at bottom */
+    /* For simplicity, let it be part of .admin-content scroll for now */
+    margin-top: auto; /* Push to bottom of content area if content is short */
+    border-top: 1px solid #34495e;
+}
+
+/* General Admin Table Styling (can be overridden by general style.css if more specific) */
+.admin-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.admin-content table th,
+.admin-content table td {
+    border: 1px solid #ddd;
+    padding: 10px 12px; /* Slightly more padding */
+    text-align: left;
+}
+.admin-content table th {
+    background-color: #f0f2f5; /* Lighter header for admin tables */
+    font-weight: 600; /* Slightly bolder */
+    color: #333;
+}
+.admin-content table tr:nth-child(even) {
+    background-color: #f9fafc;
+}
+.admin-content table tr:hover {
+    background-color: #f1f5f9;
+}
+.admin-content table td .btn-sm {
+    margin-right: 5px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+/* Admin Form Styling */
+.admin-form-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.admin-form-container .form-group {
+    margin-bottom: 18px;
+}
+.admin-form-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+}
+.admin-form-container input[type="text"],
+.admin-form-container input[type="email"],
+.admin-form-container input[type="password"],
+.admin-form-container input[type="number"],
+.admin-form-container select,
+.admin-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.admin-form-container textarea {
+    min-height: 120px;
+}
+.admin-form-container .btn { /* Assuming .btn is defined in style.css */
+    margin-right: 10px;
+}
+
+/* Dashboard Cards Example */
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.dashboard-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex: 1; /* Distribute space */
+    min-width: 200px; /* Minimum width for cards */
+    text-align: center;
+}
+.dashboard-card h4 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+.dashboard-card .count {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e8491d; /* Accent */
+    margin: 10px 0;
+}
+.dashboard-card a {
+    text-decoration: none;
+    color: #337ab7;
+}
+.dashboard-card a:hover {
+    text-decoration: underline;
+}

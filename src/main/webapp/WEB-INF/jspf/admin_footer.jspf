@@ -1,0 +1,18 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+        </main> <%-- Closes admin-content from admin_header.jspf --%>
+    </div> <%-- Closes admin-main-container from admin_header.jspf --%>
+
+    <footer class="admin-footer">
+        <p>&copy; <%= new java.text.SimpleDateFormat("yyyy").format(new java.util.Date()) %> 小爱交易网站 - 管理后台. 保留所有权利.</p>
+    </footer>
+
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/js/admin_main.js"></script> --%> <%-- If admin specific JS is needed --%>
+    
+    <c:if test="${not empty pageSpecificAdminScripts}">
+        ${pageSpecificAdminScripts}
+    </c:if>
+</body>
+</html>

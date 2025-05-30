@@ -1,0 +1,93 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 - <c:out value="${not empty pageTitle ? pageTitle : '仪表盘'}" /></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> <%-- General styles --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_style.css"> <%-- Admin specific styles --%>
+    <c:if test="${not empty pageSpecificAdminStyles}">
+        <style type="text/css">
+            ${pageSpecificAdminStyles}
+        </style>
+    </c:if>
+</head>
+<body class="admin-body"> <%-- Add class to body for admin specific global styles --%>
+    <div class="admin-top-nav">
+        <div class="admin-top-nav-brand">
+            <a href="${pageContext.request.contextPath}/admin/dashboard.jsp">小爱交易网站 - 管理后台</a>
+        </div>
+        <div class="admin-top-nav-links">
+            <a href="${pageContext.request.contextPath}/index.jsp" target="_blank">查看前台</a>
+            <c:if test="${not empty sessionScope.loggedInUser}">
+                <span>欢迎, <c:out value="${sessionScope.loggedInUser.username}" />!</span>
+                <a href="${pageContext.request.contextPath}/logout">安全退出</a>
+            </c:if>
+            <c:if test="${empty sessionScope.loggedInUser}">
+                <a href="${pageContext.request.contextPath}/login.jsp">登录</a>
+            </c:if>
+        </div>
+    </div>
+
+    <div class="admin-main-container">
+        <aside class="admin-sidebar">
+            <h3>导航菜单</h3>
+            <ul>
+                <%-- Determine active page based on request URI --%>
+                <c:set var="currentURI" value="${pageContext.request.requestURI}" />
+                <li class="${fn:contains(currentURI, '/admin/dashboard.jsp') || fn:contains(currentURI, '/admin/stats') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/stats?action=view">仪表盘/统计</a>
+                </li>
+                <li class="${fn:contains(currentURI, '/admin/orders') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/orders?action=list">订单管理</a>
+                </li>
+                <li class="${fn:contains(currentURI, '/admin/products') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/products?action=list">商品管理</a>
+                </li>
+                <li class="${fn:contains(currentURI, '/admin/customers') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/customers?action=list">客户管理</a>
+                </li>
+                <li class="${fn:contains(currentURI, '/admin/moderate') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/moderate?action=list_reviews">审核管理</a>
+                </li>
+                 <%-- Add other admin links as needed --%>
+            </ul>
+        </aside>
+        <main class="admin-content">
+            <%-- Session messages specific to admin pages --%>
+            <c:if test="${not empty sessionScope.adminSuccessMessage}">
+                <div class="alert alert-success admin-alert" role="alert">
+                    <c:out value="${sessionScope.adminSuccessMessage}"/>
+                </div>
+                <c:remove var="adminSuccessMessage" scope="session"/>
+            </c:if>
+            <c:if test="${not empty sessionScope.adminErrorMessage}">
+                <div class="alert alert-danger admin-alert" role="alert">
+                    <c:out value="${sessionScope.adminErrorMessage}"/>
+                </div>
+                <c:remove var="adminErrorMessage" scope="session"/>
+            </c:if>
+            <c:if test="${not empty sessionScope.adminWarningMessage}">
+                <div class="alert alert-warning admin-alert" role="alert">
+                    <c:out value="${sessionScope.adminWarningMessage}"/>
+                </div>
+                <c:remove var="adminWarningMessage" scope="session"/>
+            </c:if>
+            <%-- Request scope messages for admin pages --%>
+            <c:if test="${not empty requestScope.adminErrorMessage}">
+                <div class="alert alert-danger admin-alert" role="alert">
+                    <c:out value="${requestScope.adminErrorMessage}"/>
+                </div>
+            </c:if>
+            
+            <%-- Page Title within content area --%>
+            <c:if test="${not empty pageTitle}">
+                <h1><c:out value="${pageTitle}" /></h1>
+            </c:if>
+            <hr class="admin-title-hr">
+
+            <%-- Main admin content starts here --%>

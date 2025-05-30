@@ -1,0 +1,24 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+    </div> <%-- Closing .container .page-content started in header.jspf --%>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <%= new java.text.SimpleDateFormat("yyyy").format(new java.util.Date()) %> 小爱交易网站. 保留所有权利.</p>
+            <p>
+                <a href="${pageContext.request.contextPath}/about.jsp">关于我们</a> |
+                <a href="${pageContext.request.contextPath}/contact.jsp">联系方式</a> |
+                <a href="${pageContext.request.contextPath}/terms.jsp">服务条款</a>
+            </p>
+            <p>我的个人签名: 追求卓越，不断学习。</p> <%-- 这里替换为实际的个人签名或动态内容 --%>
+        </div>
+    </footer>
+
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <%-- Placeholder for page-specific JavaScript --%>
+    <c:if test="${not empty pageSpecificScripts}">
+        ${pageSpecificScripts}
+    </c:if>
+</body>
+</html>
